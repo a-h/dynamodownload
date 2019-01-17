@@ -108,7 +108,7 @@ func Scan(ctx context.Context, region, tableName string, pageSize int, throttle 
 			break
 		}
 		<-throttle
-		return len(page.LastEvaluatedKey) > 0
+		return len(page.LastEvaluatedKey) == 0
 	}
 	return client.ScanPagesWithContext(ctx, si, fn)
 }
